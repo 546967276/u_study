@@ -1,0 +1,77 @@
+@import 'base.less';
+@label-w: 35px;
+@login-r-dd-bottom:13px;
+.login {
+    .w {
+        display  : flex;
+        padding-bottom: 57px - @login-r-dd-bottom ;
+        .left {
+            padding: 65px 0 0 125px;
+            >div {
+                border-right: 1px solid #e7e7e7;
+                padding     : 0 189px 17px 0;
+
+                p {
+             
+                    label {
+                        display    : inline-block;
+                        font-weight: bold;
+                        color      : #333333;
+                        width      : @label-w;
+                        vertical-align: 7px;
+                    }
+
+                    input {
+                        width : 262px;
+                        height: 36px;
+                        border: 1px solid #ddd;
+                        margin-bottom: 15px;
+                    }
+                }
+
+                >form>input {
+                    border       : none;
+                    background   : #ff0000;
+                    width        : 265px;
+                    height       : 42px;
+                    margin-left  : @label-w;
+                    color        : #fff;
+                    margin-bottom: 19px;
+                }
+
+                >span {
+                    margin-left: 200px;
+                    font-size: 0;
+                    line-height: 0;
+                    a {
+                        color: #6a36ba;
+                        font-size: 12px;
+                        margin-right:15px ;
+                    }
+                }
+            }
+        }
+
+        .right {
+            padding  : 70px 0 0 102px;
+            >div {
+                h2 {
+                    color: #333;
+                    font-size: 12px;
+                    margin-bottom: 24px;
+                }
+                a{
+                    margin-right: 19px;
+                }
+                dt{
+                    color: #000;
+                    margin:38px 0 13px 0;
+                }
+                dd {
+                    color: #666;
+                    margin-bottom: @login-r-dd-bottom;
+                }
+            }
+        }
+    }
+}

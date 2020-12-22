@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登录页面</title>
+    <meta name="keywords" content="关键字">
+    <meta name='description' content="描述">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/login.css">
+    <script src="./js/vue-2.4.0.js"></script>
+</head>
+<body>
+    <div id="app" class="container">
+        <!-- header -->
+        <div class="header">
+            <div class="w">
+                <div class="left">
+                    <h1><a href=""><img :src="img_arr[0]" alt=""></a></h1>
+                    <ul>
+                        <li v-for='n in header_data'><a href="#">{{n}}</a></li>
+                    </ul>
+                    <span>APP下载</span>
+                </div>
+                <div class="right">
+                    <div>
+                        <input type="text">
+                        <img :src="img_arr[1]" alt="">
+                    </div>
+                    <img :src="img_arr[2]" alt="">
+                    <img :src="img_arr[3]" alt="">
+                    <a href="">登录</a>
+                    <a href="">注册</a>
+                </div>
+            </div>
+        </div>
+        <div class="login">
+            <div class="w">
+                <div class="left">
+                    <div>
+                        <form action="#" method="POST">
+                            <p>
+                                <label  for="">手机:</label>
+                                <input id='tel' type="text">
+                            </p>
+                            <p>
+                                <label  for="">密码:</label>
+                                <input id='password' type="password">
+                            </p>
+                            <input @click.prevent='login()' type="submit" value="登录">
+                        </form>
+                        <span>
+                            <a href="">找回密码</a>
+                            <a href="">注册</a>
+                        </span>
+                    </div>
+
+                </div>
+                <div class="right">
+
+                    <div>
+                        <h2>使用合作账号意见登录:</h2>
+                        <a @mouseenter='checkImg(n)' @mouseleave='checkImg(n)' v-for='n in login_img_arr'
+                            :href="'https://'+n.href">
+                            <img :src="'./img/'+n.src_1" alt="">
+                        </a>
+                        <dl>
+                            <dt>{{reg_r_p[0]}}</dt>
+                            <dd v-if='i!=0' v-for='(n,i) in reg_r_p'>{{n}}</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- footer -->
+        <div class="footer">
+            <ul class="clearfix">
+                <li v-for='n in footer_data'>{{n}}</li>
+            </ul>
+            <p>{{footer_copyright}}
+            </p>
+        </div>
+    </div>
+    <script src="./js/login.js"></script>
+
+</body>
+
+</html>

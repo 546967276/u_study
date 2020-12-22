@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>教学页面</title>
+    <meta name="keywords" content="关键字">
+    <meta name='description' content="描述">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/video.css">
+    <script src="./js/vue-2.4.0.js"></script>
+    <script src="./js/vue-resource-1.3.4.js"></script>
+</head>
+
+<body>
+    <div id="app" class="container">
+        <div class="header">
+            <div class="w">
+                <div class="left">
+                    <h1><a href=""><img :src="img_arr[0]" alt=""></a></h1>
+                    <ul>
+                        <li v-for='n in header_data'><a href="#">{{n}}</a></li>
+                    </ul>
+                    <span>APP下载</span>
+                </div>
+                <div class="right">
+                    <div>
+                        <input type="text">
+                        <img :src="img_arr[1]" alt="">
+                    </div>
+                    <img :src="img_arr[2]" alt="">
+                    <img :src="img_arr[3]" alt="">
+                    <a v-on:click.prevent href="#">登录</a>
+                    <a v-on:click.prevent href="#">注册</a>
+                </div>
+            </div>
+        </div>
+        <div class="vedio">
+            <div class="w">
+                <div class="left">
+                    <h3>{{video_list[current_vedio].title}}</h3>
+                    <!-- autoplay -->
+                    <div id="video">
+                        <video @canplay='canplay()'   width="760" :src="video_list[current_vedio].src">
+                        </video>
+                        <div id="video-ctrl">
+                            <span @click="play($event)" class="play">播放</span>
+                            <span class="time"></span>
+                            <div class="line">
+                                <div class="spot"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul>
+                        <li v-for='n in ctrl'>
+                            <a href="">
+                                <img :src="'./img/'+n.img" alt="">
+                                {{n.ctrl_name}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right">
+                    <div class="clearfix">
+                        <div class="title clearfix">
+                            <span>课程咨询</span>
+                            <span>我要报名</span>
+                            <a href="">&lt返回课程主页</a>
+                        </div>
+                    </div>
+                    <div class="list-head">
+                        <h3>目录</h3>
+                    </div>
+                    <ul class="list">
+                        <li v-for='(n,i) in video_list'>
+                            <a @click.prevent @click='changeVideo(i)' href="#">
+                                {{n.title}}
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+        <div class="sell-class">
+            <div class="w">
+                <div class="left clearfix">
+                    <h2>相关课程</h2>
+                    <ul>
+                        <li v-for='n in class_arr'>
+                            <img :src="n.src" alt="">
+                            <p>{{n.name}}</p>
+                            <p><span><i>¥ </i>{{n.ori_price}}</span> <span><i>¥ </i>{{n.price}}</span>
+                                <b>试听</b></p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="right">
+                    <h3>学员评价({{discuss.length}})</h3>
+                    <ul v-if='page<Math.ceil(discuss.length/4)'>
+                        <li v-for='i in 4' class="clearfix">
+                            <div>
+                                <img :src="discuss[(page-1)*4+i-1].user_img" alt="">
+                                <div>
+                                    <p>{{discuss[(page-1)*4+i-1].user_name}}</p>
+                                    <time>{{discuss[(page-1)*4+i-1].send_time}}</time>
+                                </div>
+                            </div>
+                            <p>{{discuss[(page-1)*4+i-1].content}}</p>
+                            <i>{{discuss[(page-1)*4+i-1].fav_num}}</i>
+                        </li>
+                    </ul>
+                    <ul v-else>
+                        <li v-for='i in discuss.length%4' class="clearfix">
+                            <div>
+                                <img :src="discuss[(page-1)*4+i-1].user_img" alt="">
+                                <div>
+                                    <p>{{discuss[(page-1)*4+i-1].user_name}}</p>
+                                    <time>{{discuss[(page-1)*4+i-1].send_time}}</time>
+                                </div>
+                            </div>
+                            <p>{{discuss[(page-1)*4+i-1].content}}</p>
+                            <i>{{discuss[(page-1)*4+i-1].fav_num}}</i>
+                        </li>
+                    </ul>
+                    <div class="paging">
+                        <input id="text" type="text" value="1">
+                        <span>/{{Math.ceil(discuss.length/4)}}</span>
+                        <input id="change" @click='changePage' type="button" value="确定">
+                        <a href='#' id='previous' @click.prevent='changePage(1)' class="nopage">上一页</a>
+                        <a href='#' id='next' @click.prevent='changePage(2)'>下一页</a>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+        <div class="footer">
+            <ul class="clearfix">
+                <li v-for='n in footer_data'>{{n}}</li>
+            </ul>
+            <p>{{footer_copyright}}
+            </p>
+        </div>
+    </div>
+
+    
+    <script src="./js/video.js"></script>
+</body>
+
+</html>

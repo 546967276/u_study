@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>注册页面</title>
+    <meta name="keywords" content="关键字">
+    <meta name='description' content="描述">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/register.css">
+    <script src="./js/vue-2.4.0.js"></script>
+
+</head>
+
+<body>
+    <div id="app" class="container">
+        <div class="header">
+            <div class="w">
+                <div class="left">
+                    <h1><a href=""><img :src="img_arr[0]" alt=""></a></h1>
+                    <ul>
+                        <li v-for='n in header_data'><a href="#">{{n}}</a></li>
+                    </ul>
+                    <span>APP下载</span>
+                </div>
+                <div class="right">
+                    <div>
+                        <input type="text">
+                        <img :src="img_arr[1]" alt="">
+                    </div>
+                    <img :src="img_arr[2]" alt="">
+                    <img :src="img_arr[3]" alt="">
+                    <a v-on:click.prevent href="#">登录</a>
+                    <a v-on:click.prevent href="#">注册</a>
+                </div>
+            </div>
+        </div>
+        <div class="register">
+            <div class="w">
+  
+                    <form action="" method="POST" class='left'>
+                    <p v-for='(n,i) in reg_name'>
+                        <label for="">{{n}}:</label>
+
+                        <input @blur='testReg($event,i)' v-if='n==reg_name[1] || n==reg_name[2]' type="password">
+                        <input @blur='testReg($event,i)' v-else type="text">
+                        <i @click="changeTestCode($event)" class="test-code" v-if='n==reg_name[4]'>{{test_code}}</i>
+                        <!-- <span v-if='n==reg_name[1]'>要求6-8位密码，首位必须为字母</span> -->
+                        <span v-show='false'>
+                            <i>* </i>{{reg_msg[i]}}
+                        </span>
+                    </p>
+                    <input @click.prevent='submitData' type="submit" value="注册">
+                </form>
+        
+                <div class="right">
+                    <p v-for='n in reg_r_p'>{{n}}</p>
+                </div>
+            </div>
+        </div>
+        <div class="footer">
+            <ul class="clearfix">
+                <li v-for='n in footer_data'>{{n}}</li>
+            </ul>
+            <p>{{footer_copyright}}
+            </p>
+        </div>
+    </div>
+    <script src="./js/register.js"></script>
+
+</body>
+
+</html>
